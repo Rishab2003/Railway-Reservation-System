@@ -1,0 +1,96 @@
+body{
+    background-image:linear-gradient(#97bbe2,#dddad2);
+    background-attachment: fixed;
+}
+
+
+
+.bg-nav{
+    background:  #394867;
+} 
+
+
+
+.banner{
+     /* background-image:linear-gradient(#d21c1c,#f7d265),url(../img/train.png);  */
+
+     background-image: url(../img/trainbg.png);
+    filter: brightness(10%);
+    filter: opacity(60%);
+    
+/*     
+    filter: blur(4px);
+  -webkit-filter: blur(4px); */
+  background-attachment: fixed;
+    object-fit: contain;
+        position: fixed;
+        /* left: 20px;
+        top: 102px; */
+     height: 87vh; 
+    width: 100%;  
+    opacity: 0.2;
+    background-size: contain;
+
+}
+
+
+
+.p-home{
+    font-size: 8vh;
+    font-weight: bold;
+    font-family: "Lucida Console", Monaco, monospace;
+    text-transform: capitalize;
+    letter-spacing: 12px;
+    text-align: left;
+    margin-top: 10vh;
+}
+
+
+
+.home-text{
+  position: absolute;
+  top: 180px;
+  left: 20px;  
+  font-weight: bold;
+  text-align: left;
+  font-size: 30px;
+}
+
+.user-image{
+    filter: blur(10px);
+  -webkit-filter: blur(10px);
+  filter: brightness(20%);
+
+}
+
+.user-text{
+    color: white;
+    position: absolute;
+    top: 130px;
+    left: 20px;  
+    font-weight: bold;
+    text-align: left;
+    font-size: 30px;
+}
+
+.details{
+    font-size: 20px;
+}
+
+.btn-pr{
+    background: #c2bbeb;
+}
+
+.btn-danger{
+    background: rgb(195, 119, 119);
+}
+
+
+
+
+
+
+
+
+
+

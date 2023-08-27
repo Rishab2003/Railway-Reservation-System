@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="user/base::Layout(~{::section})">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
+  
+</head>
+
+<body>
+  <section style="width: 99%;">
+    <div class="conainer">
+      <div class="row">
+        <div class="col-md-12 text-center mt-5">
+          <h1 style="font-family: 'Space Grotesk', sans-serif; letter-spacing: 4px;">All Aboard! Welcome to Your Railway Reservation Journey!          </h1>
+        
+        </div>
+      </div>
+      <div class="row h-100 " style="margin-top: 20vh; ">
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card text-center" style="width: 50vh; height: 27vh; ">
+            <div class="card-header text-center">
+              <b style="font-size: larger;" >Train Booking </b> 
+            </div>
+            <div class="card-body">
+              <div class="conainer text-center">
+              <a th:href="@{/user/show-trains}">
+                <img th:src="@{/img/train.png}" style="height: 100px;" >
+              </a>
+              </div>
+            </div>
+            </div>
+          
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card " style="width: 50vh; height: 27vh;">
+            <div class="card-header text-center">
+             <b style="font-size: larger;">Ticket Cancellation  </b>
+            </div>
+            <div class="card-body">
+              <div class="conainer text-center">
+              <a th:href="@{/user/cancel-tickets}">
+                <img th:src="@{/img/file.png}" style="height: 100px;" >
+              </a>
+             
+              </div> 
+            </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card " style="width: 50vh; height: 27vh;">
+            <div class="card-header text-center">
+             <b style="font-size: larger;">View Tickets </b>
+            </div>
+            <div class="card-body">
+              <div class="conainer text-center">
+              <a th:href="@{/user/view-tickets}">
+                <img th:src="@{/img/ticket.png}" style="height: 100px;" >
+              </a>
+              </div>
+            </div>
+            </div>
+        </div>
+
+      </div>
+
+
+  </section>
+
+</body>
+
+</html>

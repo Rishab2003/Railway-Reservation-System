@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="~{user/base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+</head>
+
+<body>
+    <section style="width: 99%;">
+        <div class="container-fluid mt-5">
+            <div class="row">
+
+                <div class="col-lg-1 ">
+
+                </div>
+                <div class="col-lg-10 " style="margin-bottom: 30px;">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h2 class="text-center" >Ticket Details - <span th:text="'PNR'+${train.train_id}"></span></h2>
+                            <h4><b>Passenger Details:</b></h4>
+                            <div class="details">
+                            <p style="line-height: 40px;">
+                            Name: <span th:text="${user.name}"></span><br>
+                            Email: <span th:text="${user.email}"></span><br>
+                            Mobile number:  <span th:text="${user.mobileno}"></span><br>
+                            Address:    <span th:text="${user.address}"></span><br>
+                            No.of.Passengers: <span th:text="${train.passengers}"></span><br>
+                            </div>
+                            </p>
+                         
+                            <h4><b>Train Details:</b></h4>
+                            <div class="details">
+                            <p style="line-height: 40px;">
+                            Date of departure:  <span th:text="${train.date}"></span><br>
+                            From: <span th:text="${train.start}"></span>  <br>
+                            To:     <span th:text="${train.Destination}"></span><br>
+                            Train No:   <span th:text="${train.train_no}"></span><br>
+                            Train name: <span th:text="${train.train_name}"></span><br>
+                            
+                            Total ticket cost:  <span th:text="'Rs.'+${train.ticket_price}"></span><br>
+                            Seat class: <span th:text="${train.seat_class}"></span>
+                            </p>
+
+                            
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                </div>
+
+
+                <div class="col-lg-1">
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

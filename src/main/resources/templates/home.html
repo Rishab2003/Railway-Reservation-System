@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <section  >
+     
+        
+        <div>
+
+            <div class="container  " style="color: black;">
+                <div class="row">
+                    <div class="col-md-8 offset-md-3 py-5 " >
+                            <div class="card " style="width: 70%; margin-top: 10%;" >
+                            
+                            <div class="card-body">
+                            <h5 class="card-title text-center">SIGN IN</h5>
+                            <form th:action="@{/dosignin}" method="post" class="form" >
+                                <div class="form-group">
+                                  <div th:if="${param.error}" class="alert alert-danger">
+                                    Invalid Email or password
+                                  </div>
+                                  <div th:if="${param.logout}" class="alert alert-success">
+                                    Successfuly Logged out
+                                  </div>
+                                  <label for="exampleInputEmail1">Email address</label>
+                                  <input required type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                  
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Password</label>
+                                  <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                                </div>
+                                <div >
+                                  Not a member? <a th:href="@{/signup}">Signup</a>
+                                </div>
+                                <div class="text-center py-2 ">
+                                <button type="submit" class="btn btn-pr btn-light text">Submit</button>
+                              </div>
+                              </form>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>

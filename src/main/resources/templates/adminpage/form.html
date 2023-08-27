@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:fragment="Layout(content)">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <title th:text="${title}">Base html</title>
+</head>
+
+<body>
+  <div class="container my-3 mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="card w-100 ">
+          <span th:if="${Failure} ">
+            <div class="alert alert-danget text-center" role="alert">
+              <span th:text="${Failure}"></span>
+            </div>
+          </span>
+          <span th:if="${Success} ">
+            <div class="alert alert-success text-center" role="alert">
+              <span th:text="${Success}"></span>
+            </div>
+          </span>
+          <a th:href="@{/logout}" >
+          <img th:src="@{/img/registration (1).png/}" src="" width="100" height="100" class="mx-auto d-block mt-4">
+          </a>
+
+          <div class="card-body">
+            <h2 class="card-title text-center">Add Train</h2>
+            <!--form start-->
+            <form  th:action="@{/admin/register}" method="post" th:object="${train}">
+
+              <!-- name field-->
+              <div class="form-group ">
+                <label for="name">Train Name</label>
+                <input type="text" class="form-control " id="name_field" name="train_name" placeholder="Enter here"
+                  required="true" th:value="${train_name}" />
+              </div>
+
+              <!-- name field-->
+              <div class="form-group ">
+                <label for="name">Train No</label>
+                <input type="number" min="1" max="100000000000" class="form-control " id="name_field" name="train_no"
+                  placeholder="Enter here" required="true" th:value="${train_no}" />
+              </div>
+
+
+              <div class="form-group ">
+                <label for="name">Start</label>
+                <input type="text" class="form-control " id="name_field" name="start" placeholder="Enter here"
+                  required="true" th:value="${start}" />
+              </div>
+
+
+              <div class="form-group ">
+                <label for="name">Destination</label>
+                <input type="text" class="form-control " id="name_field" name="Destination" placeholder="Enter here"
+                  required="true" th:value="${Destination}" />
+              </div>
+
+              <div class="form-group ">
+                <label for="name">Departure Date (DD-MM-YYYY)</label>
+                <input type="datetime-local" class="form-control " id="name_field" name="date" placeholder="" 
+                  required="true" th:value="${date}" />
+              </div>
+
+             
+
+
+
+
+              Enter Seat Capacity:<br>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group ">
+                    <label for="name">SL</label>
+                    <input type="number" min="0" max="200" class="form-control " id="name_field" name="SL"
+                      placeholder="Enter here" required="true" th:value="${SL}" />
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label for="name">CC</label>
+                  <input type="number" min="0" max="200" class="form-control " id="name_field" name="CC"
+                    placeholder="Enter here" required="true" th:value="${CC}" />
+                </div>
+              </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label for="name">AC2</label>
+                  <input type="number" min="0" max="200" class="form-control " id="name_field" name="AC2"
+                    placeholder="Enter here" required="true" th:value="${AC2}" />
+                </div>
+              </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label  for="name">AC3</label>
+                  <input  type="number" min="0" max="200" class="form-control " id="name_field" name="AC3"
+                    placeholder="Enter here" required th:value="${AC3}" />
+                </div>
+              </div>
+              </div>
+
+              
+              Enter Seat Price:<br>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group ">
+                    <label for="name">SL</label>
+                    <input type="number" min="0" max="2000" class="form-control " id="name_field" name="price_SL"
+                      placeholder="Enter here" required="true" th:value="${price_SL}" />
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label for="name">CC</label>
+                  <input type="number" min="0" max="2000" class="form-control " id="name_field" name="price_CC"
+                    placeholder="Enter here" required="true" th:value="${price_CC}" />
+                </div>
+              </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label for="name">AC2</label>
+                  <input type="number" min="0" max="2000" class="form-control " id="name_field" name="price_AC2"
+                    placeholder="Enter here" required="true" th:value="${price_AC2}" />
+                </div>
+              </div>
+
+                <div class="col-sm-3">
+                <div class="form-group ">
+                  <label  for="name">AC3</label>
+                  <input  type="number" min="0" max="2000" class="form-control " id="name_field" name="price_AC3"
+                    placeholder="Enter here" required th:value="${price_AC3}" />
+                </div>
+              </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+              <!--Submit button-->
+              <div class="form-group d-flex justify-content-center ">
+                <button type="submit" class="btn btn-pr btn-light mx-4">Submit</button>
+
+                <a  type="submit" th:href="@{/logout}" class="btn btn-pr btn-light mx-4" role="button" >
+                Logout
+                </a>
+              </div>
+              
+
+            </form>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script th:src="@{/js/script.js}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- create js function -->
+  <script>
+    function deleteticket(train_id) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to retrieve the ticket",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location = "/user/cancel-tickets/process/" + train_id;
+          } else {
+            swal("Your ticket is safe!");
+          }
+        });
+    }
+
+
+
+  </script>
+
+
+</body>
+
+</html>

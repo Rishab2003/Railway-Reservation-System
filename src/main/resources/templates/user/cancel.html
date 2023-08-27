@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="~{user/base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+</head>
+
+<body>
+    <section style="width: 99%;">
+        
+        <div class="container-fluid mt-5">
+            <div class="row">
+                
+                <div class="col-lg-1 ">
+                
+                </div>
+                <div class="col-lg-10 " style="margin-bottom: 30px;">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <h1 class="text-center">Ticket Cancellation</h1>
+                            <div th:if="${Message}=='Deleted' ">
+                                <div class="alert alert-success" role="alert">
+                                    Successfully Deleted your ticket!!
+                                  </div>
+                            </div>
+                            <nav class="navbar navbar-light bg-light my-2">
+                                <form class="form-inline" th:action="@{/user/cancel-tickets/filter}"  method="get" >
+                                  <input class="form-control mr-2" type="search" placeholder="Enter PNR number" aria-label="Search" name="pnr_cancel" style="width: 300px;" >
+                                  <button  class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+                                </form>
+                              </nav>
+                            <table class="table mt-3  table-sm table-hover table-bordered text-center ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">PNR number</th>
+                                        <th scope="col">Train No</th>
+                                        <th scope="col">Date of departure</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Start</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Price</th>
+
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr th:each=" train: ${train}">
+
+                                        <th scope="row" th:text="'PNR'+${train.train_id}"></th>
+                                        <td th:text="${train.train_no}"></td>
+                                        <td>
+                                            <th:block th:text="${#dates.format(train.date, 'dd-MM-yyyy')}"></th:block>
+                                          </td>
+                                          <td>
+                                            <th:block th:text="${#dates.format(train.date, 'HH:mm')}"></th:block>
+                                          </td>
+                                        <td th:text="${train.start}"></td>
+
+                                        <td th:text="${train.Destination}"></td>
+
+                                        <td th:text="${train.ticket_price}"></td>
+
+                                        <td >
+                                            
+                                            <a class="btn btn-danger btn-sm  "   th:onclick="|deleteticket(${train.train_id})|" >CancelTticket</a>
+                                      
+                                        
+                                        </td>
+                                        <td colspan="2" >
+                                            
+                                            <a type="submit" class="btn btn-pr btn-light btn-sm " th:href="@{'/user/view-tickets/'+${train.train_id}}">View>>>></a>
+                                            
+                                        </td>
+                                       
+                                    </tr>
+                        </div>
+
+                    
+
+                    </tbody>
+                 
+                    </table>
+
+                </div>
+            </div>
+            
+    
+        <div class="col-lg-1">
+
+        </div>
+
+
+
+        </div>
+
+
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>

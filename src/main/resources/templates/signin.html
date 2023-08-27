@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+</head>
+<body>
+    <section class="position-relative">
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card w-100 ">
+                        <span th:if="${Message}=='Successful' ">
+                            <div class="alert alert-success text-center" role="alert">
+                              Registered Successfully!!
+                            </div>
+                          </span>
+                          <span th:if="${userfound}">
+                            <div class="alert alert-danger text-center" role="alert">
+                              <span th:text="${userfound}"></span>
+                            </div>
+                          </span>
+                        <img th:src="@{/img/registration (1).png/}" src="" width="100" height="100" class="mx-auto d-block mt-4">
+    
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Registration form</h2>
+                            <!--form start-->  
+                            <form  th:action="@{/register}" method="post" th:object="${user}">
+                                <!-- name field-->
+                                <div class="form-group ">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control " id="name_field" name="name" 
+                                    placeholder="Enter here" required="true" th:value="${user.name}" th:classappend="${#fields.hasErrors('name') ?'is-invalid' : ' ' }" />
+                                    
+                                    <!--field.errors has list of all errors. so we are iterating them-->
+                                    <div id="validationServer03Feedback" class="invalid-feedback" th:each=" e: ${#fields.errors('name')}" th:text="${e}">
+                                       
+                                    </div>
+                                
+                                </div>
+                                <!-- monile no -->
+                                <div class="form-group ">
+                                    <label for="Mobile mumber">Mobile Number(+91)</label>
+                                    <input type="text" class="form-control " id="mobile_field" name="mobileno" 
+                                    placeholder="Enter here" required="true" th:value="${user.mobileno}" th:classappend="${#fields.hasErrors('mobileno') ?'is-invalid' : ' ' }" />
+                                    
+                                    <!--field.errors has list of all errors. so we are iterating them-->
+                                    <div id="validationServer03Feedback" class="invalid-feedback" th:each=" e: ${#fields.errors('mobileno')}" th:text="${e}">
+                                       
+                                    </div>
+                                
+                                </div>
+                                <!-- age -->
+                                <div class="form-group ">
+                                    <label for="Mobile mumber">Enter age</label>
+                                    <input type="text" class="form-control " id="age_field" name="age" 
+                                    placeholder="Enter here" required="true" th:value="${user.age}" th:classappend="${#fields.hasErrors('age') ?'is-invalid' : ' ' }" />
+                                    
+                                    <!--field.errors has list of all errors. so we are iterating them-->
+                                    <div id="validationServer03Feedback" class="invalid-feedback" th:each=" e: ${#fields.errors('age')}" th:text="${e}">
+                                       
+                                    </div>
+                                
+                                </div>
+                                <!-- Email-->
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email_field" name="email"
+                                    placeholder="Enter here" required="true" th:value="${user.email}"
+                                    th:classappend="${#fields.hasErrors('email') ?'is-invalid' : ' ' }"/>
+    
+                                    <div id="validationServer03Feedback" class="invalid-feedback" th:each=" e: ${#fields.errors('email')}" th:text="${e}">
+                                       
+                                    </div>
+                                </div>
+                                <!-- password_field-->
+                                <div class="form-group">
+                                    <label for="password_field">Password</label>
+                                    <input type="password" class="form-control" id="password_field" name="password"
+                                    placeholder="Enter here" required="true" 
+                                    th:classappend="${#fields.hasErrors('password') ?'is-invalid' : ' ' }"/>
+                                    
+                                    <div id="validationServer03Feedback" class="invalid-feedback" th:each=" e: ${#fields.errors('password')}" th:text="${e}">
+                                       
+                                    </div>
+                                </div>
+                                <!--about section-->
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea class="form-control" cols="30" rows="10" name="address" th:text="${user.address}"
+                                    placeholder="Enter your adress" th:value="${user.address}"></textarea>
+                                </div>
+                                
+                                <!--Submit button-->
+                                <div class="form-group d-flex justify-content-center ">
+                                    <button type="submit" class="btn btn-pr  mx-4">Submit</button>
+                               
+                                    
+                                </div>
+    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+    </section>
+    
+</body>
+</html>

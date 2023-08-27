@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="user/base::Layout(~{::section})">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>title</title>
+</head>
+
+<body>
+  <section style="width: 99%;">
+
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-1 ">
+
+        </div>
+        <div class="col-lg-10">
+          <div class="card ">
+            <div class="card-body">
+              
+              <!-- trains not found error message -->
+              <span th:if="${Message}=='not found'">
+                <div class="alert alert-danger text-center alert-dismissible  " role="alert">
+                  No trains were found!!
+                </div>
+              </span>
+
+              <!-- trains not found error message -->
+              <span th:if="${Message}=='booked' ">
+                <div class="alert alert-success " role="alert">
+                  Tickets have been booked. Click here to <a th:href="@{/user/view-tickets}" class="alert-link"> view tickets </a>.
+                </div>
+              </span>
+              
+
+              <form method="get" th:action="@{/user/show-trains/filter}" class="form">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="start">From</label>
+                    <input th:value="${start}" required ="text" class="form-control" id="start" placeholder="From" name="start">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="destination">To</label>
+                    <input required th:value="${destination}" type="text" class="form-control" id="destination" placeholder="To" name="destination">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="date">Date</label>
+                    <input required th:value="${date}" type="date" class="form-control" id="date" placeholder="DD/MM/YY" name="date">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState">Classes</label>
+                    <select id="inputState" class="form-control select" name="class"  required>
+                      <option value="" th:value="${clString}">Select something</option>
+                      <option>3AC</option>
+                      <option>2AC</option>
+                      <option>CC</option>
+                      <option>SL</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="seats">No.of Seats</label>
+                    <select name="seats" class="form-control select" style="width: 100%;" required>
+                      <option value="" >Select something</option>
+                      <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}"></option>
+
+                    </select>
+                  </div>
+
+                </div>
+
+
+                
+                <div class="text-cener form-group text-center">
+                  <button type="submit" class="btn btn-pr btn-light   ">Search</button>
+                </div>
+            </form>
+
+            
+              
+                <div th:if="${Message}=='found'">
+                  <table class="table mt-3  table-sm table-hover table-bordered text-center ">
+                    <thead>
+                      <tr>
+                        <th scope="col">Train No</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Seats Available</th>
+                        <th scope="col">Book Tickets</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr th:each=" train: ${train}">
+                       
+                        <th scope="row" th:text="${train.train_no}"></th>
+                        <td>
+                          <th:block th:text="${#dates.format(train.date, 'dd-MM-yyyy')}"></th:block>
+                        </td>
+                        <td>
+                          <th:block th:text="${#dates.format(train.date, 'HH:mm')}"></th:block>
+                        </td>
+                        
+                        <td th:text="${train.start}"></td>
+                        
+                        <td th:text="${train.Destination}"></td>
+
+                        <div >
+                        <div th:if="${session.class}=='3AC'">
+                          <div th:with="result=${train.price_AC3*session.seats}">
+                            <td th:text="${result}"></td>
+                          </div>
+                        </div>
+
+                        <div th:if="${session.class}=='2AC'">
+                          <div th:with="result=${train.price_AC2*session.seats}">
+                            <td th:text="${result}"></td>
+                          </div>
+                        </div>
+
+                        <div th:if="${session.class}=='CC'">
+                          <div th:with="result=${train.price_CC*session.seats}">
+                            <td th:text="${result}"></td>
+                          </div>
+                        </div>
+
+                        <div th:if="${session.class}=='SL'">
+                          <div th:with="result=${train.price_SL*session.seats}">
+                            <td th:text="${result}"></td>
+                          </div>
+                        </div>
+
+                        </div>
+
+
+                       <td scope="row" th:text="${clString}"></td>
+
+                        <div th:if="${session.class}=='3AC'" >
+                        <td th:text="${train.AC3}"></td>
+                        </div>
+                        <div th:if="${session.class}=='2AC'" >
+                          <td th:text="${train.AC2}"></td>
+                        </div>
+                        <div th:if="${session.class}=='CC'" >
+                          <td th:text="${train.CC}"></td>
+                        </div>
+                        <div th:if="${session.class}=='SL'" >
+                          <td th:text="${train.SL}"></td>
+                        </div>
+                        
+                      
+                       
+                        <td>
+                          <a type="submit"    th:field="${train.train_data_id}" class="btn btn-success btn-sm  " th:href="@{'/user/process-booking/'+${train.train_data_id}}">Confirm Tickets</a>
+                        </td>
+                        </div>
+                      
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              
+
+          </div>
+        </div>
+
+        <div class="col-lg-1">
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+</body>
+
+</html>
